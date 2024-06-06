@@ -1,0 +1,136 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  flex-direction: column;
+  background: linear-gradient(135deg, #7c0623, #500b14);
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+  margin: 20px 0 20px;
+}
+
+.container {
+  padding-top: 10px;
+  text-align: center;
+  background: #0f0e0e;
+  width: 400px;
+  height: 300px;
+  margin: auto;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(235, 199, 199, 0.5);
+}
+
+.container form {
+  background: #0f0e0e;
+}
+
+.container h2 {
+  background: #0f0e0e;
+  margin-bottom: 10px;
+  color: azure;
+}
+
+.container select {
+  background: white;
+  width: 180px;
+  height: 30px;
+  border-radius: 5px;
+}
+
+.container button {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  background: #7c0623;
+  width: 180px;
+  height: 30px;
+  color: azure;
+  cursor: pointer;
+  opacity: 90%;
+}
+
+.container button:hover {
+  opacity: 100%;
+}
+
+#movie-details {
+  margin: auto;
+  display: none;
+  margin-top: 20px;
+  padding-top: 10px;
+  text-align: center;
+  background: #0f0e0e;
+  width: 600px;
+  height: 450px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(235, 199, 199, 0.5);
+}
+
+#movie-poster {
+  max-width: 250px;
+}
+
+#movie-title {
+  margin: 20px 10px 10px 10px;
+  color: azure;
+}
+
+#movie-synopsis {
+  color: azure;
+  margin: 10px 25px 0 25px;
+  text-align: justify;
+}
+
+#loading-message {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 30px;
+  color: #fff;
+}
+
+#movie-details button {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  background: #7c0623;
+  width: 150px;
+  height: 40px;
+  color: azure;
+  cursor: pointer;
+  opacity: 90%;
+}
+
+#movie-details button:hover {
+  opacity: 100%;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid #fff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 10px auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

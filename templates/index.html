@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+    />
+    <title>Movie Suggestion App</title>
+  </head>
+  <body>
+    <h1>Movie Recommender App</h1>
+    <div class="container">
+      <h2>Select a Genre:</h2>
+      <form id="genre-form">
+        <select name="genre" id="genre-select">
+          <option value="action">Action</option>
+          <option value="adventure">Adventure</option>
+          <option value="animation">Animation</option>
+          <option value="comedy">Comedy</option>
+          <option value="drama">Drama</option>
+          <option value="horror">Horror</option>
+          <option value="romance">Romance</option>
+          <option value="sci-fi">Sci-Fi</option>
+          <option value="sport">Sport</option>
+          <option value="musical">Musical</option>
+          <option value="war">War</option>
+        </select>
+        <button type="submit">Suggest Me A Movie!</button>
+      </form>
+    </div>
+
+    <div id="loading-message" style="display: none">
+      <div class="spinner"></div>
+      <p>Please wait. Thinking of a good movie for you...</p>
+    </div>
+
+    <div id="movie-details" style="display: none">
+      <h2 id="movie-title"></h2>
+      <img id="movie-poster" src="" alt="Movie Poster" />
+      <p id="movie-synopsis"></p>
+      <p id="movie-year"></p>
+      <button id="try-again-button">Try Again</button>
+    </div>
+
+    <script>
+      document
+        .getElementById("genre-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          const genre = document.getElementById("genre-select").value;
+
+          // Show the loading message
+          document.getElementById("loading-message").style.display = "block";
+          document.getElementById("movie-details").style.display = "none";
+
+          fetch("/suggest", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: "genre=" + encodeURIComponent(genre),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              // Hide the loading message
+              document.getElementById("loading-message").style.display = "none";
+
+              if (data) {
+                document.getElementById(
+                  "movie-title"
+                ).textContent = `${data.title} (${data.year})`;
+                document.getElementById("movie-poster").src = data.poster;
+                document.getElementById("movie-synopsis").textContent =
+                  data.synopsis;
+                document.getElementById("movie-details").style.display =
+                  "block";
+              } else {
+                document.getElementById("movie-details").style.display = "none";
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              document.getElementById("loading-message").style.display = "none";
+              document.getElementById("movie-details").style.display = "none";
+            });
+        });
+      document
+        .getElementById("try-again-button")
+        .addEventListener("click", function () {
+          document.getElementById("movie-details").style.display = "none";
+          document.getElementById("genre-form").reset();
+        });
+    </script>
+  </body>
+</html>
