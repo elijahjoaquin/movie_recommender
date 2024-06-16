@@ -17,8 +17,12 @@ body {
 }
 
 h1 {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 75px;
   text-align: center;
   margin: 20px 0 20px;
+  text-shadow: 0 0 5px #7a1111, 0 0 10px #7a1111, 0 0 15px #7a1111,
+    0 0 20px #b3263d, 0 0 35px #b3263d, 0 0 40px #b3263d;
 }
 
 .container {
